@@ -2,21 +2,21 @@ const express = require("express");
 const app = express();
 
 
-app.use("/hello", (req,res)=>{
-    res.send("hello hello");
+app.get("/home", (req,res)=>{
+    res.send("home data")
 })
 
-app.use("/test", (req,res)=>{
-    res.send("hello test");
+app.post("/test", async(req,res)=>{
+    res.send("test data")
 })
 
-app.use("/", (req,res)=>{
-    res.send("namaste siva");
+app.put("/put", (req,res)=>{
+    res.send("put data")
 })
 
-
-
-
+app.delete("/delete", (req,res)=>{
+    res.send("delete data")
+})
 app.listen(3000, ()=>{
     console.group("server is running")
 })
