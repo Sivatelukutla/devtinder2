@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
 
+// dynamic route: matches "/ac" or "/abc"
+app.get("/a*c", (req, res) => {
+  res.send("sending data");
+});
 
-app.get("/home/:userId", (req,res)=>{
-    console.log(req.params);
-    res.send("home data")
+app.get("/ab+c", (req,res)=>{
+    res.send("data sending")
 })
 
-app.get("/data", (req,res)=>{
-    console.log(req.query)
-    res.send("data data data")
-})
-app.listen(3000, ()=>{
-    console.group("server is running")
-})
+// Start server
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});
