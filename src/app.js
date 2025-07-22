@@ -2,20 +2,14 @@ const express = require("express");
 const app = express();
 
 
-app.get("/home", (req,res)=>{
+app.get("/home/:userId", (req,res)=>{
+    console.log(req.params);
     res.send("home data")
 })
 
-app.post("/test", async(req,res)=>{
-    res.send("test data")
-})
-
-app.put("/put", (req,res)=>{
-    res.send("put data")
-})
-
-app.delete("/delete", (req,res)=>{
-    res.send("delete data")
+app.get("/data", (req,res)=>{
+    console.log(req.query)
+    res.send("data data data")
 })
 app.listen(3000, ()=>{
     console.group("server is running")
