@@ -1,21 +1,16 @@
 const express = require("express");
 const app = express();
+const {auth, user} = require("./middleware/auth")
 
-// app.use("/",(req,res,next)=>{
-//   // res.send("home data1")
-//   next()
-// },(req,res,next)=>{
-//   res.send("home data2")
-//   next()
-// })
-
-app.use("/", (req,res,next)=>{
-  next()
+app.use("/admin", auth, (req,res)=>{
+  res.send("admin is login successfully")
 })
 
-app.use("/",(req,res)=>{
-  res.send("home data")
+app.use("/user", user, (req,res)=>{
+  res.send("user is successfully login")
 })
+
+
 
 // Start server
 app.listen(3000, () => {
