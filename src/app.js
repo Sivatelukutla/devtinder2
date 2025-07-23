@@ -1,18 +1,16 @@
 const express = require("express");
+const connectDB = require("./config/database");
 const app = express();
-const {auth, user} = require("./middleware/auth")
 
-app.use("/admin", auth, (req,res)=>{
-  res.send("admin is login successfully")
-})
+connectDB()
+  .then(() => {
+    console.log("Database is successfully connected");
 
-app.use("/user", user, (req,res)=>{
-  res.send("user is successfully login")
-})
-
-
-
-// Start server
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
+    // Start server
+    app.listen(3000, () => {
+      console.log("Server is running on http://localhost:3000");
+    });
+  })
+  .catch((err) => {
+    console.error("Database is not connected:", err.message);
+  });
