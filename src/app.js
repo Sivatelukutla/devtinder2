@@ -1,13 +1,20 @@
 const express = require("express");
 const app = express();
 
-// dynamic route: matches "/ac" or "/abc"
-app.get("/a*c", (req, res) => {
-  res.send("sending data");
-});
+// app.use("/",(req,res,next)=>{
+//   // res.send("home data1")
+//   next()
+// },(req,res,next)=>{
+//   res.send("home data2")
+//   next()
+// })
 
-app.get("/ab+c", (req,res)=>{
-    res.send("data sending")
+app.use("/", (req,res,next)=>{
+  next()
+})
+
+app.use("/",(req,res)=>{
+  res.send("home data")
 })
 
 // Start server
